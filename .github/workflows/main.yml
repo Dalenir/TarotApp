@@ -1,0 +1,28 @@
+name: Stage Deploy
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: 
+      - main
+    types: [closed]
+
+jobs:
+  deploy-to-server:
+    if: ${{ github.event.pull_request.merged || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh pipeline 1
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_SERVER_DOMAIN }}
+          username: ${{ secrets.TEST_SERVER_USER }}
+          key: ${{ secrets.TEST_SERVER_SSHKEY }}
+          port: ${{ secrets.TEST_SERVER_PORT }}
+          command_timeout: 5m
+          script: |
+            { cd LittleAPI && git pull ; } || { git clone https://github.com/Dalenir/LittleAPI.git && cd LittleAPI ; }
+            cp Deploy/.env.example Deploy/.env
+            sudo -S docker compose -f Deploy/main_compose.yml build
+            sudo -S docker compose -f Deploy/main_compose.yml stop
+            sudo -S docker compose -f Deploy/main_compose.yml up -d

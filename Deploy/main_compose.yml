@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+
+  ltl_api:
+    build:
+      context: ../API
+      dockerfile: api.dockerfile
+    container_name: ltl_api
+    env_file:
+      - .env
+    ports:
+      - "${API_PORT}:8000"
+    volumes:
+      - ../API:/LittleAPI
+    networks:
+      - ltl_fullstack
+    command: python3 main.py
+
+
+  mongo:
+    image: mongo
+    container_name: '${MONGO_HOST}'
+    ports:
+      - "27001:27001"
+    volumes:
+      - ./Data/Mongo/:/data/db
+    env_file: .env
+    networks:
+      - ltl_fullstack
+    command: mongod --quiet --logpath /dev/null --port 27001
+
+  web:
+    build:
+      context: ../web
+      dockerfile: web.dockerfile
+      args:
+        VITE_API_ROOT: ${PROD_API_ENDPOINT}
+    container_name: LittleReact
+    ports:
+      - "80:80"
+    volumes:
+      - ../web:/web
+      - exclude:/web/node_modules
+    env_file: .env
+    networks:
+      - ltl_fullstack
+    command: nginx -g 'daemon off;'
+
+networks:
+  ltl_fullstack:
+    driver: bridge
+
+volumes:
+    exclude:

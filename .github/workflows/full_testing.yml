@@ -1,0 +1,31 @@
+name: Test Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: 'Making .env'
+        run: |
+          cp Deploy/.env.example Deploy/.env
+      - name: 'Building containers'
+        run: docker compose -f Deploy/main_compose.yml build
+      - name: 'Testing'
+        id: testing
+        run: docker compose -f Deploy/main_compose.yml run --rm ltl_api /bin/sh tests/all_tests_comm.sh 
+      - name: 'Report upload'
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: Reports
+          path: |
+            API/reports/coverage_html
+            API/reports/flake8_report
+            API/generated/complete.html
