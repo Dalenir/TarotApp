@@ -54,17 +54,6 @@ body {
     justify-content: center;
 }
 
-
-.field {
-    background-color: bisque;
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .card-prev {
     display: none;
 }

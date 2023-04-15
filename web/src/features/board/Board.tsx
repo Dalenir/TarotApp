@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Board.css'
 import './buttons.css'
-import Card from "../card/Card";
+import type {board, field} from "../../interfacesa"
+import Field from "../card/Field";
 import {nanoid} from "nanoid";
 
 interface mousePosInt {
@@ -38,24 +39,20 @@ export default function Board() {
     }
 
     function allNewCards () {
-        let doned:Array<number> = []
-        let array = []
-        for (let i=0; i<11; i++) {
-            let x = randCard()
-            while (doned.some(v => v === x)) {
-                x = randCard()
-            }
-            doned.push(x)
-            array.push(<div className="field" id={`field-${i}`}><Card number={x} is_preview={false} field={i} key={nanoid(5)}/></div>)
-
-        }
-        console.log('array', array)
-        return array
+        axios.get(`${import.meta.env.VITE_API_ROOT}/refresh_board`)
+            .then(r => {
+                if (r.status === 200) {
+                    const new_board: board = JSON.parse(r.data)
+                    setCards(new_board.fields.map((field) =>
+                        <Field {...field} key={nanoid(5)}/>
+                    ))
+                }
+            })
     }
 
 
     useEffect(() => {
-        setCards(allNewCards())
+        allNewCards()
     }, [upd]);
 
 

@@ -1,21 +1,24 @@
 import React from "react";
-import Card from "./Card";
+import Field from "./Field";
 import './Preview.css'
+import {card, field} from "../../interfacesa";
 
 
-interface PreviewProps {
-    field?: number
-    card_number: number
-}
-
-export default function Preview({ field, card_number }: PreviewProps) {
+export default function Preview({number, description, card}:field) {
 
     return (
         <div className='prev-container'>
-            <Card number={card_number} is_preview={true} field={field}/>
+            <img
+                src={`${import.meta.env.VITE_API_ROOT}/card/${card.id}`}
+                alt='Bah no image'
+                style={{borderRadius: '10px',
+                    height: "40vh",
+                    width: "26vh",
+                }}
+            />
             <div className='prev-text'>
-                <div className='text-pf'><p>Card number: {card_number}</p></div>
-                <div className='text-pf'><p>Field number: {field}</p></div>
+                <div className='text-pf'><p>{number}: \n {card.description}</p></div>
+                <div className='text-pf'><p>{description}</p></div>
             </div>
         </div>
     )

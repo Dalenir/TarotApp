@@ -4,7 +4,7 @@ import App from "./App";
 import "./index.css";
 import {DevSupport} from "@react-buddy/ide-toolbox";
 import {ComponentPreviews, useInitial} from "./dev";
-import Card from "./features/card/Card";
+import Field from "./features/card/Field";
 import Board from "./features/board/Board";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <DevSupport ComponentPreviews={ComponentPreviews}
                     useInitialHook={useInitial}
         >
-            <Board />
+            <Board/>
         </DevSupport>
     </React.StrictMode>,
 );

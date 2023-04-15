@@ -1,26 +1,35 @@
 import React from "react";
 import {ComponentPreview, Previews} from "@react-buddy/ide-toolbox";
 import {PaletteTree} from "./palette";
-import App from "../App";
 import Card from "../features/card/Card";
+import {card} from "../interfacesa";
 import Board from "../features/board/Board";
-import Preview from "../features/card/Preview";
+
+
+let caad: card = {
+    id: 0,
+    name: "Card",
+    description: "Card",
+    value: 5,
+    state: true,
+    suit: 'card',
+    stats: {
+        good: 1,
+        luck: 2,
+        order: 3,
+        wild: true
+    }
+
+}
 
 const ComponentPreviews = () => {
-    // @ts-ignore
     return (
         <Previews palette={<PaletteTree/>}>
-            <ComponentPreview path="/App">
-                <App/>
-            </ComponentPreview>
             <ComponentPreview path="/Card">
-                <Card number={0} field={0} is_preview={false}/>
+                <Card {...caad}/>
             </ComponentPreview>
             <ComponentPreview path="/Board">
                 <Board/>
-            </ComponentPreview>
-            <ComponentPreview path="/Preview">
-                <Preview card_number={0} field={0}/>
             </ComponentPreview>
         </Previews>
     );
