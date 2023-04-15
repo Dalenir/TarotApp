@@ -6,6 +6,8 @@ services:
     build:
       context: ../API
       dockerfile: api.dockerfile
+    depends_on:
+      - mongo
     container_name: ltl_api
     env_file:
       - .env

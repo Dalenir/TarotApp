@@ -1,0 +1,26 @@
+.prev-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+.text-pf {
+    width: 20vh;
+    height: 19vh;
+    background-color: #bbb58a;
+    color: black;
+    font-size: 19px;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.text-pf > p {
+    margin: 10px;
+}
+
+.prev-container {
+    gap: 0.5vh;
+    display: flex;
+    align-items: center;
+}

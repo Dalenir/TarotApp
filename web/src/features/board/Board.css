@@ -1,0 +1,155 @@
+/*#board {*/
+/*    height: 100%;*/
+/*    display: grid;*/
+/*    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1.5fr;*/
+/*    grid-template-rows: 12.5% 25% 25% 25% 12.5%;*/
+/*    gap: 1em 1em;*/
+/*    align-items: stretch;*/
+/*}*/
+
+#board {
+    background-color: #143a46;
+    display: grid;
+    width: 98%;
+    height: 98%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.board-text { grid-area: board-text; }
+
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: fit-content;
+    height: 100%;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
+    overflow: hidden;
+    min-width: 0;
+}
+
+#board > .cfield {
+    background-color: rebeccapurple;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+    background-color: #05072c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.field {
+    background-color: bisque;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-prev {
+    display: none;
+}
+
+.card-prev.visible {
+    position: absolute;
+    display: block;
+    z-index: 99;
+}
+
+#test {
+    top: 50%; left: 18%;
+    position: absolute;
+    width: 333px;
+    height: 132px;
+    background: #f9f9f9;
+    transform: translate3d(0, 0, 23em);
+    transform-style: preserve-3d;
+    z-index: 99;
+}
+
+.btn-68 {
+    width: 333px;
+    height: 132px;
+    position: absolute;
+    text-align: center;
+    top: 88%; left: 84%;
+    transform: translate(-50%, -50%);
+    font-size: 44px;
+}
+
+#textarea {
+    position: absolute;
+    background: slategray;
+    width: 28%;
+    height: 70%;
+    top: 40%; left: 84%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+#field-0 {
+    top: 50%; left: 18%;
+}
+
+#field-1 {
+    top: 50%; left: 20%;
+}
+
+#field-2 {
+    top: 51%; left: 20%;
+}
+
+#field-3 {
+    top: 20%; left: 20%;
+}
+
+#field-4 {
+    top: 80%; left: 20%;
+}
+
+#field-5 {
+    top: 50%; left: 35%;
+}
+
+#field-6 {
+    top: 50%; left: 5%;
+}
+
+#field-7 {
+    top: 80%; left: 61.5%;
+}
+
+#field-8 {
+    top: 68%; left: 48.5%;
+}
+
+#field-9 {
+    top: 32%; left: 48.5%;
+}
+
+#field-10 {
+    top: 20%; left: 61.5%;
+}
+
+.BakaField{
+    transform: rotate(-90deg);
+}

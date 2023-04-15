@@ -12,10 +12,11 @@ A barebones repo that can make it easier to develop and deploy a full-stack app 
 
 
 ## Easy start:
-1) Update all node packages:
+1) Update all node packages from web folder:
     ```sh
-    pushd web && bash enviroment_update.sh && popd 
+    pushd web && & echo y > npx npm-check-updates -u && npm i && popd 
     ```
+   
 2) Copy .env file from example:
    ```sh
    cp Deploy/.env.example Deploy/.env

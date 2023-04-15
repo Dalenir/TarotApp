@@ -1,6 +1,8 @@
 fastapi
 uvicorn
 colorama
+motor
+pandas
 
 
 pytest

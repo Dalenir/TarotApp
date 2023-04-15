@@ -1,3 +1,5 @@
+import asyncio
+
 from fastapi import FastAPI, Path
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
@@ -7,7 +9,7 @@ from starlette.responses import JSONResponse
 from uvicorn import Server, Config
 from fastapi.middleware.cors import CORSMiddleware
 
-
+from utilts.static_data_update import make_update_static_data
 from endpoints import example_points
 from settings import Settings, main_settings
 from api_loggers.log import main_logger
@@ -32,6 +34,10 @@ def server_setup(settings: Settings = main_settings):
 
     debug_mode = settings.DEBUG_MODE
     container_enviroment = settings.DOCKER
+    update_static_data = settings.UPDATE_STATIC
+
+    if update_static_data:
+        asyncio.run(make_update_static_data())
 
     if container_enviroment:
         host = "0.0.0.0"
