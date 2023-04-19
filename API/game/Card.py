@@ -4,8 +4,6 @@ from database.Mongo import Mongo
 from game.Stats import Stats
 from game.Suit import Suit
 from game.models.card_model import CardModel, CardState
-from game.models.stats_model import StatsModel
-from game.models.suit_model import Suits, SuitModel
 
 
 class Card(CardModel):
@@ -14,10 +12,11 @@ class Card(CardModel):
     def __init__(self, **data: Any):
         super().__init__(**data)
 
-    @staticmethod
+    @classmethod
     async def get_card_data(cls, card_id: int, card_state: CardState):
+        db = cls.database()
         card_data: dict = (
-                await cls.database.cards_collection.aggregate(
+                await db.cards_collection.aggregate(pipeline=
                     [
                     {
                         "$match": {"_id": card_id}

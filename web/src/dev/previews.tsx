@@ -2,31 +2,39 @@ import React from "react";
 import {ComponentPreview, Previews} from "@react-buddy/ide-toolbox";
 import {PaletteTree} from "./palette";
 import Card from "../features/card/Card";
-import {card} from "../interfacesa";
+import {card, suit} from "../interfacesa";
 import Board from "../features/board/Board";
 
 
-let caad: card = {
+let card: card = {
     id: 0,
     name: "Card",
     description: "Card",
     value: 5,
     state: true,
-    suit: 'card',
+    suit: {
+        name: 'Swords',
+        description: 'Test'},
     stats: {
         good: 1,
         luck: 2,
         order: 3,
         wild: true
-    }
-
+    },
+    size: { width: "13vh", height: "20vh" }
 }
 
 const ComponentPreviews = () => {
+    const FlippyFlip =  () => {
+        console.log("flip")
+    }
+
     return (
         <Previews palette={<PaletteTree/>}>
             <ComponentPreview path="/Card">
-                <Card {...caad}/>
+                <Card {...card}
+                      is_flipped={false}
+                      flip_handle={FlippyFlip}/>
             </ComponentPreview>
             <ComponentPreview path="/Board">
                 <Board/>

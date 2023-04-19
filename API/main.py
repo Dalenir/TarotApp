@@ -16,10 +16,10 @@ app.include_router(auth_points.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[""],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST"],
-    allow_headers=["Access-Control-Allow-Headers", "Content-Type", "Authorization", "Access-Control-Allow-Origin","Set-Cookie"],
+    allow_headers=["*"],
 )
 
 
