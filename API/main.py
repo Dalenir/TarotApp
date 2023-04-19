@@ -1,26 +1,24 @@
-from fastapi import FastAPI, Path
-from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import RequestValidationError
-from starlette import status
-from starlette.requests import Request
-from starlette.responses import JSONResponse
+import asyncio
+
+from fastapi import FastAPI
 from uvicorn import Server, Config
 from fastapi.middleware.cors import CORSMiddleware
 
-
-from endpoints import example_points
+from database.Mongo import Mongo
+from endpoints import game_points, auth_points
 from settings import Settings, main_settings
 from api_loggers.log import main_logger
 
 app = FastAPI()
-app.include_router(example_points.router)
+app.include_router(game_points.router)
+app.include_router(auth_points.router)
 
-...
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -32,6 +30,8 @@ def server_setup(settings: Settings = main_settings):
 
     debug_mode = settings.DEBUG_MODE
     container_enviroment = settings.DOCKER
+
+    asyncio.run((Mongo().database_setup(settings)))
 
     if container_enviroment:
         host = "0.0.0.0"

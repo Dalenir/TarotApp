@@ -1,0 +1,15 @@
+.card-image {
+    border-radius: 4%;
+    outline: antiquewhite solid 2px;
+    position: relative;
+}
+
+.field {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
