@@ -1,1 +1,8 @@
 GET http://localhost:8090/refresh_board
+###
+GET http://localhost:8090/cookie
+Cookie: theme=dark; country=France
+###
+GET http://localhost:8090/test
+###
+POST http://localhost:8090/auth_token

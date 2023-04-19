@@ -1,7 +1,6 @@
 import React from "react";
-import Field from "./Field";
 import './Preview.css'
-import {card, field} from "../../interfacesa";
+import {field} from "../../interfacesa";
 
 
 export default function Preview({number, description, card}:field) {
@@ -17,8 +16,14 @@ export default function Preview({number, description, card}:field) {
                 }}
             />
             <div className='prev-text'>
-                <div className='text-pf'><p>{number}: \n {card.description}</p></div>
-                <div className='text-pf'><p>{description}</p></div>
+                <div className='text-pf'>
+                    <h3>Field {number}</h3>
+                    <p>{description}</p>
+                </div>
+                <div className='text-pf'>
+                    <h3>{card.name}</h3>
+                    <p>{card.description}</p>
+                </div>
             </div>
         </div>
     )
