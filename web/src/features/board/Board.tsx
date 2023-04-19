@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Board.css'
 import './buttons.css'
-import type {board} from "../../interfacesa"
+import type {board, field} from "../../interfacesa"
 import Field from "../card/Field";
 import {nanoid} from "nanoid";
 

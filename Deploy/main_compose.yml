@@ -9,8 +9,6 @@ services:
     container_name: ltl_api
     env_file:
       - .env
-    environment:
-      APP_MODE: Production
     ports:
       - "${API_PORT}:8000"
     volumes:

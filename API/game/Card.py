@@ -1,6 +1,4 @@
-from typing import Any
-
-from database.Mongo import Mongo
+from database import Mongo
 from game.Stats import Stats
 from game.Suit import Suit
 from game.models.card_model import CardModel, CardState
@@ -9,15 +7,11 @@ from game.models.suit_model import Suits, SuitModel
 
 
 class Card(CardModel):
-    database: Any = Mongo
-
-    def __init__(self, **data: Any):
-        super().__init__(**data)
 
     @staticmethod
-    async def get_card_data(cls, card_id: int, card_state: CardState):
+    async def get_card_data(card_id: int, card_state: CardState):
         card_data: dict = (
-                await cls.database.cards_collection.aggregate(
+                await Mongo.cards_collection.aggregate(
                     [
                     {
                         "$match": {"_id": card_id}

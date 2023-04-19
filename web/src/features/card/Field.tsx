@@ -1,5 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './Field.css'
+import ReactCardFlip from 'react-card-flip';
+import {unstable_batchedUpdates} from "react-dom";
 import Preview from "./Preview";
 import type {field} from "../../interfacesa";
 import Card from "./Card";
@@ -45,6 +47,7 @@ export default function Field({number, description, card}: field) {
         setIsFlipped((old_flipped) => !old_flipped)
     }
 
+
     return(
         <div className='field' id={`field-${number}`}>
          <div
@@ -58,7 +61,7 @@ export default function Field({number, description, card}: field) {
                  width: number === 2 ? field_size.height : field_size.width,
          }}
          >
-             <div style={{transform: number === 2 ? 'rotate(-90deg)' : card.state ?'rotate(-180deg)': undefined}}>
+             <div style={{transform: number === 2 ? 'rotate(-90deg)' : undefined}}>
                  <Card {...card}
                        is_flipped={isFlipped}
                        flip_handle={FlippyFlip}

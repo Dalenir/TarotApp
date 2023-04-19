@@ -6,7 +6,7 @@
 }
 
 .text-pf {
-    width: 25vh;
+    width: 20vh;
     height: 19vh;
     background-color: #bbb58a;
     color: black;
@@ -15,7 +15,7 @@
     border-radius: 3px;
 }
 
-.text-pf > p, h3 {
+.text-pf > p {
     margin: 10px;
 }
 

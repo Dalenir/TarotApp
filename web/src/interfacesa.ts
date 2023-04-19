@@ -1,3 +1,5 @@
+import {field as #JSQualifiedReferenceType} from "./interfacesa";
+
 export interface card {
     id: number,
     value: number,

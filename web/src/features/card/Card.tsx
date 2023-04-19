@@ -1,5 +1,5 @@
 import {card} from "../../interfacesa";
-import React from "react";
+import React, {useState} from "react";
 import ReactCardFlip from "react-card-flip";
 import './Card.css'
 
@@ -28,15 +28,15 @@ export default function Card({ is_flipped, flip_handle, size, id, suit}:CardElem
 
         switch(suit.name.toLowerCase()) {
             case Suit.Swords:
-                return {outline: '5px inset crimson'}
+                return {outline: '3px inset scarlet'}
             case Suit.Cups:
-                return {outline: '5px inset blue'}
+                return {outline: '3px inset blue'}
             case Suit.Wands:
-                return {outline: '5px inset firebrick'}
+                return {outline: '3px inset brown'}
             case Suit.Pentacles:
-                return {outline: '5px inset gold'}
+                return {outline: '3px inset gold'}
             case Suit.Major:
-                return {outline: '8px inset silver'}
+                return {outline: '6px inset silver'}
         }
     }
 
@@ -54,7 +54,7 @@ export default function Card({ is_flipped, flip_handle, size, id, suit}:CardElem
                  key='back'
                  onClick={flip_handle}
                  className='card'
-                 style={{...size, borderRadius: '10px'}}
+                 style={size}
             />
         </ReactCardFlip>
     )

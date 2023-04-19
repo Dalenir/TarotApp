@@ -11,8 +11,6 @@ services:
     container_name: ltl_api
     env_file:
       - .env
-    environment:
-      APP_MODE: Development
     ports:
       - "8090:8000"
     volumes:
@@ -39,9 +37,6 @@ services:
     container_name: LittleReact
     ports:
       - "80:80"
-    depends_on:
-      - ltl_api
-      - mongo
     volumes:
       - ../web:/web
       - exclude:/web/node_modules
