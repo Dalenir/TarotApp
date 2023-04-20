@@ -27,9 +27,9 @@ class Card(CardModel):
                             "Meaning": 1,
                             "Value": '$No',
                             "Stats": {
-                                "Luck": f"${'T' if card_state.up else 'R'}Luck",
-                                "Good": f"${'T' if card_state.up else 'R'}Good",
-                                "Order": f"${'T' if card_state.up else 'R'}Order",
+                                "Luck": f"${'T' if card_state == CardState.up else 'R'}Luck",
+                                "Good": f"${'T' if card_state == CardState.up else 'R'}Good",
+                                "Order": f"${'T' if card_state == CardState.up else 'R'}Order",
                                 "Wild": "$Wild"
                             },
                             "Suit": "$Type"
