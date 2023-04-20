@@ -24,7 +24,7 @@ class Card(CardModel):
                     {
                         "$project": {
                             "Name": 1,
-                            "Meaning": 1,
+                            "Meaning": f"${'Meaning' if card_state == CardState.up else 'Reverse'}",
                             "Value": '$No',
                             "Stats": {
                                 "Luck": f"${'T' if card_state == CardState.up else 'R'}Luck",
