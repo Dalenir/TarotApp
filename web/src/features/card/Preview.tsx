@@ -15,6 +15,9 @@ export default function Preview({number, description, card}:field) {
                     width: "26vh",
                 }}
             />
+            <p className="reverse_text">
+                {!card.state && "Reversed"}
+            </p>
             <div className='prev-text'>
                 <div className='text-pf'>
                     <h3>Field {number}</h3>

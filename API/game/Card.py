@@ -38,7 +38,8 @@ class Card(CardModel):
                 ]
             ).to_list(length=None)
         )[0]
-
+        if card_state != CardState.up:
+            print(card_data['Name'], card_data['Meaning'])
         card_stats = Stats(good=card_data['Stats']['Good'],
                                 luck=card_data['Stats']['Luck'],
                                 order=card_data['Stats']['Order'],

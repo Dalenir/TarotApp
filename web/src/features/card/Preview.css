@@ -24,3 +24,13 @@
     display: flex;
     align-items: center;
 }
+
+.reverse_text {
+    position: absolute;
+    top: -80px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    left: 25%;
+    transform: translateX(-50%);
+}

@@ -58,7 +58,7 @@ export default function Field({number, description, card}: field) {
                  width: number === 2 ? field_size.height : field_size.width,
          }}
          >
-             <div style={{transform: number === 2 ? 'rotate(-90deg)' : card.state ?'rotate(-180deg)': undefined}}>
+             <div style={{transform: number === 2 ? 'rotate(-90deg)' : !card.state ? 'rotate(-180deg)': undefined}}>
                  <Card {...card}
                        is_flipped={isFlipped}
                        flip_handle={FlippyFlip}
