@@ -1,10 +1,12 @@
 import json
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import FileResponse
-
+from starlette.websockets import WebSocket
 
 from game.Board import Board
+from schemas.user import User
+from security.UserManager import get_current_user, get_current_user_websocket
 
 router = APIRouter()
 
@@ -21,3 +23,10 @@ async def card_test(card_number: int):
 async def refresh_board():
     a = await Board.game_start()
     return a.json()
+
+@router.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket, bah = Depends(get_current_user_websocket)):
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"bah")

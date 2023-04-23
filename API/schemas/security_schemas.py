@@ -15,6 +15,7 @@ class TokenPayload(BaseModel):
     exp: int = None  # expiration
     fresh: bool = None  # is the token fresh?
     scopes: list[str] = None  # scopes of the token
+    payer: bool = None  # is the token for a payer?
 
     class Config:
         use_enum_values = True

@@ -1,0 +1,15 @@
+body {
+    background-color: #fffbf0;
+}
+
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 30%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.ttle {
+    font-family: 'Old Standard TT', serif;
+}

@@ -1,10 +1,11 @@
 from fastapi import Depends, HTTPException
 from jose import JWTError, jwt
 from starlette import status
+from starlette.websockets import WebSocket
 
 import settings
 from database.UserBase import UserBase
-from security.bearer_cookie import oauth2_scheme
+from security.bearer_cookie import oauth2_scheme, websocket_auth_test
 from security.jwt_home_brew import JWTBrew, get_jwt_brew
 from utilts import CryptoMan
 
@@ -27,6 +28,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme), jwt_manager: JWT
         payload = jwt_manager.decode_access_token(token)
 
     except (JWTError, ValueError) as e:
-        print(e)
         raise credentials_exception
     return payload
+
+
+async def get_current_user_websocket(websocket: WebSocket, token = Depends(websocket_auth_test)):
+    return 'bah'

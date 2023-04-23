@@ -19,7 +19,7 @@ export const PaletteTree = () => (
   <Palette>
     <AntdPalette/> 
     <ReactIntlPalette/>
-    <Category name="App templates">
+    <Category name="GameScreen templates">
       <Component name="Card">
         <Variant name="Loading">
           <Card title="Card title">

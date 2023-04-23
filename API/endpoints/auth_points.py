@@ -32,7 +32,7 @@ async def login_for_access_token(jwt_manager: JWTBrew = Depends(get_jwt_brew),
                     headers={"WWW-Authenticate": "Bearer"},
                 )
     else:
-        access_token = jwt_manager.create_access_token(username=user.username,
+        access_token = jwt_manager.create_access_token(user=user,
                                                        expires_delta=timedelta(minutes=settings.JWT_EXPIRATION_TIME),
                                                        settings=settings
                                                        )
@@ -40,6 +40,6 @@ async def login_for_access_token(jwt_manager: JWTBrew = Depends(get_jwt_brew),
         return 'Sucsessfully authenticated!'
 
 
-@router.post("/protected_endpoint/")
+@router.post("/user_profile/")
 async def card_test(csrf_token: Annotated[str, Form()], user: User = Depends(get_current_user, use_cache=False)):
-    return {"message": user}
+    return user

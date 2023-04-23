@@ -7,6 +7,7 @@ from fastapi import Request, Depends
 from fastapi import Response
 
 from schemas.security_schemas import TokenPayload, TokenType
+from schemas.user import User
 from security.tokens.jwt_config_shema import TokenLocation, CookieSameSite, JWTBrewSettings
 from security.tokens.jwt_configs import jwt_cookie_csrf
 from settings import Settings, get_settings, main_settings
@@ -51,7 +52,7 @@ class JWTBrew:
 
 
     @staticmethod
-    def create_access_token(username: str,
+    def create_access_token(user: User,
                               expires_delta: timedelta = None,
                               token_type: TokenType = TokenType.access,
                               settings: Settings = get_settings()):
@@ -59,7 +60,7 @@ class JWTBrew:
             expire = datetime.utcnow() + expires_delta
         else:
             expire = datetime.utcnow() + timedelta(minutes=settings.JWT_EXPIRATION_TIME)
-        token = TokenPayload(exp=int(expire.timestamp()), sub=username, type=token_type)
+        token = TokenPayload(exp=int(expire.timestamp()), sub=user.username, type=token_type, payer=user.is_payer)
         encoded_jwt = jwt.encode(token.dict(), settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
         return encoded_jwt
 
