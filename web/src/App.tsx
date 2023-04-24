@@ -7,6 +7,7 @@ import {RequireToken} from "./features/auth/auth";
 import React, {useState} from "react";
 import User from "./interfaces/User";
 import { redirect } from "react-router-dom";
+import Registration from "./features/auth/Registration";
 
 console.log(import.meta.env);
 console.log(import.meta.env.PROD)
@@ -37,6 +38,8 @@ function App() {
                         <Profile user={user} handle_logout={LogOut} />
                     </RequireToken>
                 }/>
+                <Route path="/register" element ={ <Registration /> } />
+                <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
         </div>
     )

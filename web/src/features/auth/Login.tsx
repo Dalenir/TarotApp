@@ -51,9 +51,15 @@ export default function Login() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
-                        <Button variant="primary" size="lg" type="submit">
-                            Login
-                        </Button>
+                        <div className='d-flex justify-content-around'>
+                            <Button variant="primary" size="lg" type="submit" className='log-button'>
+                                Login
+                            </Button>
+                            <Button variant="outline-secondary" size="lg" type="button" className='log-button'
+                                    href="/register">
+                                Register
+                            </Button>
+                        </div>
                     </Form>
                 </Row>
             </Container>

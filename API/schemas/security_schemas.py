@@ -19,3 +19,4 @@ class TokenPayload(BaseModel):
 
     class Config:
         use_enum_values = True
+

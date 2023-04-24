@@ -1,11 +1,11 @@
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class User(BaseModel):
     username: str
-    email: str
+    email: EmailStr
     is_payer: bool = False
 
     def __init__(self, **kwargs):
@@ -23,5 +23,4 @@ class MongoUser(User):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
 

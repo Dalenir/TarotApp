@@ -6,7 +6,8 @@ pandas
 python-multipart
 python-jose[cryptography]
 passlib
-
+redis
+pydantic[email]
 
 # pytest
 # httpx

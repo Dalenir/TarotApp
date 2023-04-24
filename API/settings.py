@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str
     JWT_ALGORITHM: str = 'HS256'
     JWT_EXPIRATION_TIME: int = 15
+    REDIS_PORT: int
+    REDIS_PASS: str
+    cache_database: int = 0
 
     class Config:
         @classmethod

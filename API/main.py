@@ -5,13 +5,14 @@ from uvicorn import Server, Config
 from fastapi.middleware.cors import CORSMiddleware
 
 from database.Mongo import Mongo
-from endpoints import game_points, auth_points
+from endpoints import game_points, auth_points, registration_points
 from settings import Settings, main_settings
 from api_loggers.log import main_logger
 
 app = FastAPI()
 app.include_router(game_points.router)
 app.include_router(auth_points.router)
+app.include_router(registration_points.router)
 
 
 app.add_middleware(

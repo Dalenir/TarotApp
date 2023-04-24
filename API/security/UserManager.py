@@ -1,10 +1,10 @@
 from fastapi import Depends, HTTPException
-from jose import JWTError, jwt
+from jose import JWTError
 from starlette import status
 from starlette.websockets import WebSocket
 
-import settings
 from database.UserBase import UserBase
+from schemas.user import MongoUser
 from security.bearer_cookie import oauth2_scheme, websocket_auth_test
 from security.jwt_home_brew import JWTBrew, get_jwt_brew
 from utilts import CryptoMan
@@ -30,6 +30,15 @@ async def get_current_user(token: str = Depends(oauth2_scheme), jwt_manager: JWT
     except (JWTError, ValueError) as e:
         raise credentials_exception
     return payload
+
+async def register_user(username: str, password: str, email: str, database: UserBase = UserBase()):
+    if await database.get_user(username):
+        return False
+    password_hash = CryptoMan.get_password_hash(password)
+    await database.set_user(user=MongoUser(username=username,
+                                           email=email,
+                                           password_hash=password_hash))
+    return True
 
 
 async def get_current_user_websocket(websocket: WebSocket, token = Depends(websocket_auth_test)):

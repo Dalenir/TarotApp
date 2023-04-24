@@ -13,3 +13,8 @@ body {
 .ttle {
     font-family: 'Old Standard TT', serif;
 }
+
+.log-button {
+    width: 100%;
+    max-width: 40%;
+}
