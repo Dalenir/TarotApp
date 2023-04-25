@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {FormEventHandler, useEffect, useState} from "react";
 import {Button, Container, Form, Row} from "react-bootstrap";
 import './Registration.css'
 import axios from "axios";
@@ -12,11 +12,30 @@ interface RegistrationData {
     code?: string
 }
 
+interface DisabledForms {
+    formBasicUsername: boolean,
+    formBasicEmail: boolean,
+    formBasicPassword: boolean,
+    formSecondPassword: boolean,
+    formCheckCode: boolean
+}
+
+let startdisabledForms: DisabledForms = {
+    formBasicUsername: false,
+    formBasicEmail: false,
+    formBasicPassword: false,
+    formSecondPassword: false,
+    formCheckCode: false
+}
+
 
 export default function Registration(): JSX.Element {
 
     const [validated_data, setValidatedData] = useState<RegistrationData|undefined>(undefined);
+    const [disabledForms, setDisabledForms] = useState<DisabledForms>(startdisabledForms);
 
+
+    const [codeFormVisible, setCodeFormVisible] = useState<boolean>();
     const handleVerification = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -44,8 +63,14 @@ export default function Registration(): JSX.Element {
             .then(res => {
             console.log(res.data)
         })
-        console.log('2')
         setValidatedData(data);
+        setDisabledForms((old) => {
+            let new_o: DisabledForms = {...old}
+            Object.keys({...old}).forEach(function (key) {
+                new_o[key as keyof DisabledForms] = true
+            })
+            return new_o
+        })
     };
 
     const handleRegistration = (event: React.FormEvent<HTMLFormElement>) => {
@@ -72,6 +97,19 @@ export default function Registration(): JSX.Element {
     })
     }
 
+    function NotReallyDisabled (event: React.MouseEvent) {
+        let idd = (event.target as HTMLInputElement).id
+        setDisabledForms((old) => {
+            return {...old,
+                    [idd]: false
+            }
+        })
+    }
+
+    function EmailChange (event: React.FormEvent<HTMLElement>) {
+        setValidatedData(undefined);
+    }
+
 
     return (
         <Container fluid className="align-items-center vh-100 d-flex justify-content-center flex-column gap-md-3">
@@ -79,30 +117,30 @@ export default function Registration(): JSX.Element {
             <Row className="login-container">
                 <Form onSubmit={!validated_data?handleVerification:handleRegistration}>
                     <div className='d-flex justify-content-center gap-2 mx-2 mb-2'>
-                        <Form.Group controlId="formBasicUsername">
+                        <Form.Group controlId="formBasicUsername" onClick={NotReallyDisabled}>
                             <Form.Control
-                                type="Username" size="lg" placeholder="Username"  disabled={!!validated_data}
+                                type="text" size="lg" placeholder="Username"  disabled={disabledForms.formBasicUsername}
                             />
                         </Form.Group>
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group controlId="formBasicEmail" onChange={EmailChange} onClick={NotReallyDisabled}>
                             <Form.Control
-                                type="email" size="lg" placeholder="E-mail"  disabled={!!validated_data}
+                                type="email" size="lg" placeholder="E-mail"  disabled={disabledForms.formBasicEmail}
                             />
                         </Form.Group>
                     </div>
-                    <Form.Group className="mx-2 mb-2"  controlId="formBasicPassword">
+                    <Form.Group className="mx-2 mb-2"  controlId="formBasicPassword" onClick={NotReallyDisabled}>
                         <Form.Control
-                            size="lg" type="password" placeholder="Password"  disabled={!!validated_data}
+                            size="lg" type="password" placeholder="Password"  disabled={disabledForms.formBasicPassword}
                         />
                     </Form.Group>
-                    <Form.Group className="m-2"  controlId="formSecondPassword">
+                    <Form.Group className="m-2"  controlId="formSecondPassword" onClick={NotReallyDisabled}>
                         <Form.Control
-                            size="lg" type="password" placeholder="Repeat Password"  disabled={!!validated_data}
+                            size="lg" type="password" placeholder="Repeat Password"  disabled={disabledForms.formSecondPassword}
                         />
                     </Form.Group>
                     <Form.Group className={!validated_data?"d-none":"m-2"}  controlId="formCheckCode">
                         <Form.Control
-                            size="lg" type="password" className='text-center' placeholder="Code from Email"
+                            size="lg" type="text" className='text-center' placeholder="Code from Email"
                         />
                     </Form.Group>
                     <div className='mx-2'>
@@ -111,7 +149,7 @@ export default function Registration(): JSX.Element {
                                 size="lg"
                                 type="submit"
                                 id={'big-submit-button'}>
-                            {validated_data?'Verify code':'Register!'}
+                            {validated_data?'Verify code':'Get verification code'}
                         </Button>
                     </div>
                 </Form>
