@@ -48,7 +48,6 @@ body {
 #root {
     height: 100vh;
     width: 100%;
-    background-color: #05072c;
     display: flex;
     align-items: center;
     justify-content: center;

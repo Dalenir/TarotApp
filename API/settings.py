@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     REDIS_PORT: int
     REDIS_PASS: str
     cache_database: int = 0
+    EMAIL_LOGIN: str
+    EMAIL_PASSW: str
 
     class Config:
         @classmethod

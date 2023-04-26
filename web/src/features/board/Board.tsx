@@ -5,11 +5,13 @@ import './buttons.css'
 import type {board} from "../../interfacesa"
 import Field from "../card/Field";
 import {nanoid} from "nanoid";
+import User from "../../interfaces/User";
 
 interface mousePosInt {
     x: number
     y: number
 }
+
 
 
 export default function Board() {
@@ -34,9 +36,7 @@ export default function Board() {
         };
     }, []);
 
-    function randCard () {
-        return Math.floor(Math.random() * 21)
-    }
+    useEffect(() => { document.body.style.backgroundColor = '#05072c' }, [])
 
     function allNewCards () {
         axios.get(`${import.meta.env.VITE_API_ROOT}/refresh_board`)

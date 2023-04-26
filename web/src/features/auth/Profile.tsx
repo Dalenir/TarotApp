@@ -1,5 +1,10 @@
 import User from "../../interfaces/User";
-import {Button} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
+import './Profile.css';
+import Board from "../board/Board";
+
+
+ // TODO: ONLY FOR DEMOSTRATION PURPOSES, REDO ALL
 
 interface ProfileProps {
     user: User | undefined,
@@ -8,14 +13,14 @@ interface ProfileProps {
 
 export default function Profile({ user, handle_logout } : ProfileProps) {
 
-    console.log('profile level', user)
-
     return (
-        <>
-            {user && <h1>{user.name} profile page</h1>}
-            {user?.payer && <h2>Thank you for your support!</h2>}
-            <Button variant="dark" onClick={handle_logout}>Logout</Button>
-
-        </>
+        <Container fluid className="align-items-center vh-100 d-flex justify-content-center">
+            <Board />
+            <div className='simple_username'>
+                {user && <h1>Hello, {user.name}!</h1>}
+                {user?.payer && <h2>Thank you for your support!</h2>}
+                <Button variant="dark" onClick={handle_logout}>Logout</Button>
+            </div>
+        </Container>
     );
 };

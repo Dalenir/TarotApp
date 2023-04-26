@@ -2,6 +2,7 @@ import React, {FormEventHandler, useEffect, useState} from "react";
 import {Button, Container, Form, Row} from "react-bootstrap";
 import './Registration.css'
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 
 interface RegistrationData {
@@ -33,9 +34,10 @@ export default function Registration(): JSX.Element {
 
     const [validated_data, setValidatedData] = useState<RegistrationData|undefined>(undefined);
     const [disabledForms, setDisabledForms] = useState<DisabledForms>(startdisabledForms);
+    const [shake, setShake] = useState(false);
+    const navigate = useNavigate()
 
 
-    const [codeFormVisible, setCodeFormVisible] = useState<boolean>();
     const handleVerification = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -55,7 +57,7 @@ export default function Registration(): JSX.Element {
             alert('Passwords are not equal!')
             return
         }
-        console.log('1')
+        console.log('varri', data.email)
 
         let formdata = new FormData();
         formdata.append("email", data.email);
@@ -84,13 +86,18 @@ export default function Registration(): JSX.Element {
             secpassword: (elements.namedItem("formSecondPassword") as HTMLSelectElement).value,
             code: (elements.namedItem("formCheckCode") as HTMLSelectElement).value,
         };
+
+        console.log('regggi', data.email)
+
         let formdata = new FormData();
         for (let dataKey in data) {
             formdata.append(dataKey, data[dataKey as keyof RegistrationData]);
         }
         // TODO: 1) make a lot of checks and make a valid redirect
         axios.post(`${import.meta.env.VITE_API_ROOT}/security/email_code_verify`, formdata)
-            .then(res => {res.status === 200 && res.data.success && alert('Registration is successful!')})
+            .then(res => {if ( res.status === 200 && res.data.success ) {
+                navigate('/login')
+            }})
             .catch(err => {
                 console.log(err)
                 alert('Registration is failed!')
@@ -108,6 +115,12 @@ export default function Registration(): JSX.Element {
 
     function EmailChange (event: React.FormEvent<HTMLElement>) {
         setValidatedData(undefined);
+    }
+
+    function ShakeItBaby (event: React.MouseEvent) {
+        console.log(disabledForms.formBasicPassword)
+        setShake(true);
+        setTimeout(() => setShake(false), 200);
     }
 
 
@@ -128,12 +141,16 @@ export default function Registration(): JSX.Element {
                             />
                         </Form.Group>
                     </div>
-                    <Form.Group className="mx-2 mb-2"  controlId="formBasicPassword" onClick={NotReallyDisabled}>
+                    <Form.Group className={"mx-2 mb-2 passform " + (shake && disabledForms.formBasicPassword ? "shake":"")}
+                                controlId="formBasicPassword"
+                                onClick={disabledForms.formBasicPassword?ShakeItBaby:undefined}>
                         <Form.Control
                             size="lg" type="password" placeholder="Password"  disabled={disabledForms.formBasicPassword}
                         />
                     </Form.Group>
-                    <Form.Group className="m-2"  controlId="formSecondPassword" onClick={NotReallyDisabled}>
+                    <Form.Group className={`m-2 passform ${shake && disabledForms.formSecondPassword ? "shake":""}`}
+                                controlId="formSecondPassword"
+                                onClick={disabledForms.formSecondPassword?ShakeItBaby:undefined} >
                         <Form.Control
                             size="lg" type="password" placeholder="Repeat Password"  disabled={disabledForms.formSecondPassword}
                         />

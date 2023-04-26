@@ -8,6 +8,8 @@ import React, {useState} from "react";
 import User from "./interfaces/User";
 import { redirect } from "react-router-dom";
 import Registration from "./features/auth/Registration";
+import Board from "./features/board/Board";
+import './App.css';
 
 console.log(import.meta.env);
 console.log(import.meta.env.PROD)

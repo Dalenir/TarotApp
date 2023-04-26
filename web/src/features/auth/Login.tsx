@@ -1,10 +1,13 @@
-import {Navigate, useLocation} from "react-router-dom";
+import {Link, Navigate, useLocation, useNavigate} from "react-router-dom";
 import {Button, Container, Form, Row} from "react-bootstrap";
 import './Login.css';
 import axios from "axios";
 import React, {useState} from "react";
 
 export default function Login() {
+
+    const navigate = useNavigate();
+
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState<JSX.Element | null>(null);
@@ -22,8 +25,7 @@ export default function Login() {
         axios.post(`${import.meta.env.VITE_API_ROOT}/auth_token`, formdata, { withCredentials: true, })
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data);
-                    setRedirect(<Navigate to='/profile' state ={{from : location}}/>);
+                    navigate('/profile');
                 }
             })
 
@@ -55,10 +57,10 @@ export default function Login() {
                             <Button variant="primary" size="lg" type="submit" className='log-button'>
                                 Login
                             </Button>
-                            <Button variant="outline-secondary" size="lg" type="button" className='log-button'
-                                    href="/register">
-                                Register
-                            </Button>
+                                <Button variant="outline-secondary" size="lg" type="button" className='log-button'
+                                    href="/register" onClick={() => navigate('/register')}>
+                                    Register
+                                </Button>
                         </div>
                     </Form>
                 </Row>
