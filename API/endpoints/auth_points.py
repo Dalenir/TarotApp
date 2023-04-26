@@ -40,6 +40,6 @@ async def login_for_access_token(jwt_manager: JWTBrew = Depends(get_jwt_brew),
         return 'Sucsessfully authenticated!'
 
 
-@router.post("/user_profile/")
+@router.post("/user_profile")
 async def card_test(csrf_token: Annotated[str, Form()], user: User = Depends(get_current_user, use_cache=False)):
     return user
