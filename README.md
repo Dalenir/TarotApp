@@ -1,78 +1,20 @@
-# FastAPI Vite React
-A barebones repo that can make it easier to develop and deploy a full-stack app using React and FastAPI.
+# Tarot Nevercode
+#### Or "My first fullstack project"
 
-## Built on:
-- **FastAPI**: *Fast, simple, and has a modern design.*
-- **Vite React `react-swc-ts`** : *Greatly simplifies the development process. Outstanding HMR support.*
-- **MongoDB**: *Not just reliable and fast, but offer the ability to easily create distributed databases.*
-- **Docker**: *Fundamental tool in modern development.*
+[![Badge](https://qjk58x0g1geu.runkit.sh)](https://git.io/gradientbadge)
+### [Live version](https://tarot.nevercode.space/)
 
-## Includes:
-- **React Buddy**: *I just love this Webstorm plugin! Will make it optional later.*
-
-
-## Easy start:
-1) Update all node packages from web folder:
-    ```sh
-    pushd web && & echo y > npx npm-check-updates -u && npm i && popd 
-    ```
-   
-2) Copy .env file from example:
-   ```sh
-   cp Deploy/.env.example Deploy/.env
-   ```
-
-3) Build dev images:
-   ```sh
-   docker compose -f Deploy/dev_compose.yml build
-   ```
-
-4) Start your app in dev mode
-   ```sh
-   docker compose -f Deploy/dev_compose.yml up
-   ```
-
-5) When you ready to ship, build and start it for production:
-   ```sh
-   docker compose -f Deploy/main_compose.yml build && docker compose -f Deploy/main_compose.yml up
-   ```
-
----
-
-- Make sure set API folder as source in Pycharm project
-- Enviromental variables: Deploy/.env
-- Logs: /logs
-
----
-
-## Enviromental variables
-**Deploy/.env**
-
-| Variable             | Description                                                                                                             | Default         |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------|-----------------|
-| API_PORT             | Port number <br/> *`INT`*                                                                                               | `8008 `         |
-| DEBUG_MODE           | Debyg mode for development. More logs, autoreload from disk. <br/> *`String`* : `'True'/'False`                         | `True`          |
-| COMPOSE_PROJECT_NAME | Name of compose group in docker listing. <br/>*`Строка`*                                                                | `ltl_fullstack` |
-| DOCKER               | Launch method. Set on "Docker" for launch in container. Setting DEBUG_MODE on False. <br/> *`String`* : `'True'/'False` | `'True'`        |
-
-
----
-
-
-
-### Usefull commands:
-
-**Full API tests**: 
-```sh 
-docker compose -f Deploy/main_compose.yml run --rm ltl_api /bin/sh tests/all_tests_comm.sh
-```
-
-
-### Planned functionality:
-
-1. Clearer API modes and variables.
-2. Simplified QA.
-   1. API unittests libraries to separate step in dockerfile.
-   2. Container for backend and frontend QA tests .
-3. One command project start.
-4. More options for project creation.
+## Techstack: **FARM**
+<img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white"  alt="Python"/>
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"  alt="TypeScript"/>
+<br>
+<img src="https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white"  alt="FastAPI"/> 
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"  alt="React"/>
+<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"  alt="MongoDB"/>
+<br>
+And of course
+<br>
+<img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+<img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
+<img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx">
+<img src="https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&logo=redis&logoColor=white" alt="Redis">
