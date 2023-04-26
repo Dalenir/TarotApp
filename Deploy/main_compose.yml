@@ -49,6 +49,17 @@ services:
       - ltl_fullstack
     command: nginx -g 'daemon off;'
 
+  redis:
+    image: redis:latest
+    container_name: TarotRedis
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: redis-server --requirepass ${REDIS_PASS:?REDIS_PASS variable is not set} --save 20 1 --loglevel warning --port ${REDIS_PORT}
+    volumes:
+      - ./Data/Redis:/data
+    networks:
+      - ltl_fullstack
+
 networks:
   ltl_fullstack:
     driver: bridge
