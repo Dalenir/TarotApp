@@ -1,31 +1,24 @@
+from fastapi import Depends
+from motor.motor_asyncio import AsyncIOMotorCollection
+
+from database.Mongo import Mongo
 from game.models.field_model import FieldModel
 
 
 class Field(FieldModel):
 
-    # TODO: Ofc redo, but not now, i'm in hurry to bed
-    async def get_meaning(self):
-        match self.number:
-            case 0:
-                self.description = 'You'
-            case 1:
-                self.description = 'Atmosphere'
-            case 2:
-                self.description = 'Advice / Obstacle'
-            case 3:
-                self.description = 'Сonsciousness / Best of you'
-            case 4:
-                self.description = 'Subconsciousness / Your roots'
-            case 5:
-                self.description = 'The close past'
-            case 6:
-                self.description = 'The close future'
-            case 7:
-                self.description = 'Your attitude'
-            case 8:
-                self.description = 'Your home'
-            case 9:
-                self.description = 'Hopes and Fears'
-            case 10:
-                self.description = 'Outcome'
+    # TODO: Here is good example why I need separate classes for collections with easy access
+
+    async def base_fill(self, mongo_client: Mongo = Mongo()):
+        field_collection = mongo_client.fields_collection
+        field_data = (await field_collection.aggregate(pipeline=[
+                        {"$match": {"_id": 3}},
+                        {"$project": {
+                            'description': "$meaning",
+                            'name': '$name'
+                            }
+                            }
+                        ]).to_list(length=None))[0]
+        self.description = field_data['description']
+        self.name = field_data['name']
         return self

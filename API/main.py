@@ -4,9 +4,9 @@ from fastapi import FastAPI
 from uvicorn import Server, Config
 from fastapi.middleware.cors import CORSMiddleware
 
-from database.Mongo import Mongo
+from database.Mongo import Mongo, BaseStarter
 from endpoints import game_points, auth_points, registration_points
-from settings import Settings, main_settings
+from settings import Settings, main_settings, static_mongo
 from api_loggers.log import main_logger
 
 app = FastAPI()
@@ -32,7 +32,11 @@ def server_setup(settings: Settings = main_settings):
     debug_mode = settings.DEBUG_MODE
     container_enviroment = settings.DOCKER
 
-    asyncio.run((Mongo().database_setup(settings)))
+    asyncio.run(BaseStarter(static_db=static_mongo)\
+        .database_setup(
+                ensure_indexes=settings.ENSURE_INDEXES,
+                refill_static_data=settings.UPDATE_STATIC
+    ))
 
     if container_enviroment:
         host = "0.0.0.0"
@@ -46,7 +50,7 @@ def server_setup(settings: Settings = main_settings):
         main_logger.infolog.info(f'[S] API ROOT http://localhost:{outer_port}')
         main_logger.infolog.info(f'[S] API DOCS http://localhost:{outer_port}/docs')
         log_level = 'warning'
-        reload_policy = False if container_enviroment else True  # Известная проблема см. README (1)
+        reload_policy = False if container_enviroment else True
     else:
         main_logger.infolog.info(f'API WIIL BE STARTED IN PRODUCTION MODE AT PORT :{outer_port}')
         log_level = 'info'

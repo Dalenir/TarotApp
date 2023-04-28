@@ -36,6 +36,6 @@ class Board(BoardModel):
         cards = await asyncio.gather(*cards)
 
         fields = await asyncio.gather(*[
-            Field(number=i, card=card).get_meaning() for i, card in enumerate(cards)
+            Field(number=i, card=card).base_fill() for i, card in enumerate(cards)
         ])
         return Board(fields=fields)

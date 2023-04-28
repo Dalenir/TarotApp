@@ -6,6 +6,9 @@ from game.Suit import Suit
 from game.models.card_model import CardModel, CardState
 
 
+# TODO: Rethink: maybe Card broke SRC? Not feels like it, but naming is maybe can be better: Card -> CardGenerator
+#  TODO: It is returning fresh Card with database connection, it REALLY SHOULDNT DO SUCH THINGS!
+
 class Card(CardModel):
     database: Any = Mongo
 

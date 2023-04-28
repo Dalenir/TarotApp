@@ -7,5 +7,6 @@ from game.models.card_model import CardModel
 
 class FieldModel(BaseModel):
     number: int
-    description: str = 'There is no description here too, lad. Stop looking/'
+    name: str = 'Generic name'
+    description: str = 'Generic description'
     card: CardModel | None = None

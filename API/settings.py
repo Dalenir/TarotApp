@@ -3,6 +3,8 @@ from functools import lru_cache
 
 from pydantic import BaseSettings
 
+from database.StaticMongo import StaticMongoDatabase, StaticMongoCollection, StaticCards, StaticFields
+
 
 class AppMode(Enum):
     DEV = 'Development'
@@ -13,6 +15,7 @@ class Settings(BaseSettings):
     DOCKER: bool
     DEBUG_MODE: bool
     UPDATE_STATIC: bool
+    ENSURE_INDEXES: bool = True
     MONGO_HOST: str
     MONGO_PORT: int = 27001
     MONGO_INITDB_ROOT_USERNAME: str
@@ -44,3 +47,13 @@ def get_settings():
 
 
 main_settings = get_settings()
+
+static_mongo = StaticMongoDatabase(
+
+    name='static',
+    collections={
+        StaticCards(),
+        StaticFields()
+    }
+)
+
