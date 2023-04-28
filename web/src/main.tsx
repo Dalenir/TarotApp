@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {CookiesProvider} from "react-cookie";
 import './index.css'
 
+// TODO: 1! Fully refactor filestructure of web app
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <BrowserRouter>
