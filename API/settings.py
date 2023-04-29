@@ -3,12 +3,11 @@ from functools import lru_cache
 
 from pydantic import BaseSettings
 
-from database.StaticMongo import StaticMongoDatabase, StaticMongoCollection, StaticCards, StaticFields
-
 
 class AppMode(Enum):
     DEV = 'Development'
     PROD = 'Production'
+
 
 class Settings(BaseSettings):
     API_PORT: int
@@ -41,19 +40,10 @@ class Settings(BaseSettings):
                         return AppMode.PROD
             return cls.json_loads(raw_val)
 
+
 @lru_cache()
 def get_settings():
     return Settings()
 
 
 main_settings = get_settings()
-
-static_mongo = StaticMongoDatabase(
-
-    name='static',
-    collections={
-        StaticCards(),
-        StaticFields()
-    }
-)
-

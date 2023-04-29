@@ -11,7 +11,6 @@ class CardState(Enum):
     reversed = False
 
 
-
 class CardModel(BaseModel):
     id: int
     value: int

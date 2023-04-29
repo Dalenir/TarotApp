@@ -1,19 +1,19 @@
 import asyncio
 
 from fastapi import FastAPI
-from uvicorn import Server, Config
 from fastapi.middleware.cors import CORSMiddleware
+from uvicorn import Server, Config
 
-from database.Mongo import Mongo, BaseStarter
-from endpoints import game_points, auth_points, registration_points
-from settings import Settings, main_settings, static_mongo
 from api_loggers.log import main_logger
+from database.MongoDB.base_ensurance.big_brother import BigBrother
+from database.MongoDB.base_ensurance.maintainers import UserMaintainer, FieldMaintainer, CardsMaintainer
+from endpoints import game_points, auth_points, registration_points
+from settings import Settings, main_settings
 
 app = FastAPI()
 app.include_router(game_points.router)
 app.include_router(auth_points.router)
 app.include_router(registration_points.router)
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,11 +32,10 @@ def server_setup(settings: Settings = main_settings):
     debug_mode = settings.DEBUG_MODE
     container_enviroment = settings.DOCKER
 
-    asyncio.run(BaseStarter(static_db=static_mongo)\
-        .database_setup(
-                ensure_indexes=settings.ENSURE_INDEXES,
-                refill_static_data=settings.UPDATE_STATIC
-    ))
+    asyncio.run(BigBrother(UserMaintainer(), FieldMaintainer(), CardsMaintainer())
+                .database_setup(ensure_indexes=settings.ENSURE_INDEXES,
+                                refill_all=settings.UPDATE_STATIC)
+                )
 
     if container_enviroment:
         host = "0.0.0.0"

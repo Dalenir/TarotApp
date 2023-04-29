@@ -21,7 +21,7 @@ NameParams = namedtuple('NameParams', ['return_code', 'name', 'response_dict'])
                                           NameParams(200, 'String', {'message': 'Hello String'}),
                                           NameParams(422, '$%WN',
                                                      {'detail': 'string does not match regex "^[a-zA-Z0-9_]*$"'}),
-                                          NameParams(200, 'A'*100, {'message': f'Hello {"A"*100}'})],
+                                          NameParams(200, 'A' * 100, {'message': f'Hello {"A" * 100}'})],
                 ids=['Empty string', 'Valid string', "Numbers and symbols", 'Large string'])
 def name_data(request):
     return request.param

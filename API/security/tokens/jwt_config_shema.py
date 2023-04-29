@@ -16,7 +16,6 @@ class CookieSameSite(Enum):
 
 
 class JWTBrewSettings(BaseModel):
-
     access_cookie_name = 'access_token'
     refresh_cookie_name = 'refresh_token'
     csrf_cookie_name = 'csrf_token'

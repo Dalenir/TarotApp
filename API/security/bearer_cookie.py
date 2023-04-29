@@ -1,18 +1,17 @@
 # from fastapi.openapi.models import OAuth2
+from typing import Dict
+
 from fastapi import HTTPException, Depends
-from fastapi.security import OAuth2
 from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel, OAuthFlowPassword
+from fastapi.security import OAuth2
 from fastapi.security.utils import get_authorization_scheme_param
 from starlette import status
 from starlette.exceptions import WebSocketException
 from starlette.requests import Request
 from starlette.status import HTTP_401_UNAUTHORIZED
-from typing import Dict
-
 from starlette.websockets import WebSocket
 
 from security.jwt_home_brew import JWTBrew, get_jwt_brew
-from security.tokens.jwt_config_shema import JWTBrewSettings
 
 
 class OAuth2PasswordBearerWithCookie(OAuth2):
@@ -61,8 +60,6 @@ def websocket_auth_test(websocket: WebSocket, jwt_brew: JWTBrew = Depends(get_jw
         raise WebSocketException(code=status.WS_1008_POLICY_VIOLATION)
     else:
         return param
-
-
 
 
 oauth2_scheme = OAuth2PasswordBearerWithCookie(tokenUrl="auth_token", jwt_manager=get_jwt_brew())

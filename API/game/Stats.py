@@ -2,7 +2,7 @@ from game.models.stats_model import StatsModel
 
 
 class Stats(StatsModel):
-    #TODO: change after base filled
+    # TODO: change after base filled
     def __init__(self, good, luck, order, wild):
         good = good if isinstance(good, int) else 0
         luck = good if isinstance(luck, int) else 0

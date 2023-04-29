@@ -19,8 +19,7 @@ class User(BaseModel):
 
 class MongoUser(User):
     _id: str | None = None
-    password_hash: str  | None = None
+    password_hash: str | None = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-

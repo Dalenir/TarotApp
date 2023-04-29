@@ -1,5 +1,3 @@
-from enum import Enum
-
 from pydantic import BaseModel
 
 from game.models.card_model import CardModel

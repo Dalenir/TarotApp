@@ -1,5 +1,7 @@
-from settings import get_settings, Settings
 import redis.asyncio as redis
+
+from settings import get_settings, Settings
+
 
 class RedCache:
 
@@ -10,7 +12,7 @@ class RedCache:
                                  db=settings.cache_database,
                                  password=settings.REDIS_PASS,
                                  decode_responses=True)
-        
+
     async def get(self, key: str) -> str:
         return await self.redis.get(f'{self.main_key}:{key}')
 

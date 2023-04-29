@@ -5,12 +5,12 @@ from fastapi import APIRouter, Depends, HTTPException, Form
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette import status
 
-from database.UserBase import UserBase
+from database.MongoDB.user_database import UserBase
+from schemas.user import User, MongoUser
 from security import UserManager
 from security.UserManager import get_current_user
 from security.jwt_home_brew import JWTBrew, get_jwt_brew
 from settings import Settings, get_settings
-from schemas.user import User, MongoUser
 
 router = APIRouter()
 
@@ -27,10 +27,10 @@ async def login_for_access_token(jwt_manager: JWTBrew = Depends(get_jwt_brew),
     )
     if not user:
         raise HTTPException(
-                    status_code=status.HTTP_401_UNAUTHORIZED,
-                    detail="Incorrect username or password",
-                    headers={"WWW-Authenticate": "Bearer"},
-                )
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     else:
         access_token = jwt_manager.create_access_token(user=user,
                                                        expires_delta=timedelta(minutes=settings.JWT_EXPIRATION_TIME),

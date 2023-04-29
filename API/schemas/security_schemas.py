@@ -1,4 +1,3 @@
-from datetime import timedelta
 from enum import Enum
 
 from pydantic import BaseModel
@@ -19,4 +18,3 @@ class TokenPayload(BaseModel):
 
     class Config:
         use_enum_values = True
-

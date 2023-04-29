@@ -3,7 +3,7 @@ from jose import JWTError
 from starlette import status
 from starlette.websockets import WebSocket
 
-from database.UserBase import UserBase
+from database.MongoDB.user_database import UserBase
 from schemas.user import MongoUser
 from security.bearer_cookie import oauth2_scheme, websocket_auth_test
 from security.jwt_home_brew import JWTBrew, get_jwt_brew
@@ -18,6 +18,7 @@ async def authenticate(username: str, password: str, database: UserBase):
         return
     return user
 
+
 async def get_current_user(token: str = Depends(oauth2_scheme), jwt_manager: JWTBrew = Depends(get_jwt_brew)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -31,7 +32,8 @@ async def get_current_user(token: str = Depends(oauth2_scheme), jwt_manager: JWT
         raise credentials_exception
     return payload
 
-async def register_user(username: str, password: str, email: str, database: UserBase = UserBase()):
+
+async def register_user(username: str, password: str, email: str, database: UserBase = UserBase):
     if await database.get_user(username):
         return False
     password_hash = CryptoMan.get_password_hash(password)
@@ -41,5 +43,5 @@ async def register_user(username: str, password: str, email: str, database: User
     return True
 
 
-async def get_current_user_websocket(websocket: WebSocket, token = Depends(websocket_auth_test)):
+async def get_current_user_websocket(websocket: WebSocket, token=Depends(websocket_auth_test)):
     return 'bah'

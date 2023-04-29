@@ -36,7 +36,6 @@ async def email_code_verify(username: Annotated[str, Form()],
 
 @router.post("/new_user_reg")
 async def registration_first_step(email: Annotated[str, Form()]):
-
     secret_code = ''.join(secrets.choice(digits) for i in range(7))
 
     smtp_obj = smtplib.SMTP(host='smtp.elasticemail.com', port=2525)

@@ -14,4 +14,3 @@ class Suits(Enum):
 class SuitModel(BaseModel):
     name: Suits
     description = "There is no description today, lad"
-
