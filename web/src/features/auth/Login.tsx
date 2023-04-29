@@ -2,7 +2,7 @@ import {Link, Navigate, useLocation, useNavigate} from "react-router-dom";
 import {Button, Container, Form, Row} from "react-bootstrap";
 import './Login.css';
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export default function Login() {
 
@@ -30,6 +30,8 @@ export default function Login() {
             })
 
     }
+
+    useEffect(() => { document.body.style.backgroundColor = '#fffbf0' }, [])
 
 
     return (

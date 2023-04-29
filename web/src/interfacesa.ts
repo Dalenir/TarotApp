@@ -12,6 +12,7 @@ export interface card {
 export interface field {
     number: number,
     description: string,
+    name: string,
     card: card
 }
 

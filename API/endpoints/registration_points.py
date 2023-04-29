@@ -5,9 +5,10 @@ from email.mime.text import MIMEText
 from string import digits
 from typing import Annotated
 
-from fastapi import APIRouter, Form
+from fastapi import APIRouter, Form, Depends
 
 from database.Cashing import RedCache
+from database.MongoDB.user_database import UserBase
 from security.UserManager import register_user
 from settings import main_settings
 
@@ -25,10 +26,11 @@ router = APIRouter(prefix="/security")
 async def email_code_verify(username: Annotated[str, Form()],
                             email: Annotated[str, Form()],
                             password: Annotated[str, Form()],
-                            code: Annotated[str, Form()]):
-    cache = RedCache(email)
+                            code: Annotated[str, Form()],
+                            database: UserBase = Depends(UserBase)):
+    cache = RedCache(f'users:{email}')
     if await cache.get('verification_code') == code:
-        await register_user(username=username, email=email, password=password)
+        await register_user(username=username, email=email, password=password, database=database)
         await cache.delete(f'potential_mail:{username}')
         return {'success': True}
     return {'success': False}
@@ -52,7 +54,7 @@ async def registration_first_step(email: Annotated[str, Form()]):
     smtp_obj.sendmail(main_settings.EMAIL_LOGIN, email, msg.as_string())
     smtp_obj.quit()
 
-    cache = RedCache(email)
+    cache = RedCache(f'users:{email}')
     expire_seconds = 350
     await cache.set('verification_code', secret_code, expire_seconds)
 

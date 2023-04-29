@@ -21,8 +21,6 @@ async def card_test(card_number: int):
 @router.get("/refresh_board")
 async def refresh_board():
     board = await BoardMaker.game_start()
-    print(board.json())
-    print(board)
     return board.json()
 
 

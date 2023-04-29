@@ -33,7 +33,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), jwt_manager: JWT
     return payload
 
 
-async def register_user(username: str, password: str, email: str, database: UserBase = UserBase):
+async def register_user(username: str, password: str, email: str, database: UserBase):
     if await database.get_user(username):
         return False
     password_hash = CryptoMan.get_password_hash(password)

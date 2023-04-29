@@ -5,7 +5,7 @@ import type {field} from "../../interfacesa";
 import Card from "./Card";
 
 
-export default function Field({number, description, card}: field) {
+export default function Field({number, description, card, name}: field) {
     const [preview, setPreview] = useState<JSX.Element>();
     const [isFlipped, setIsFlipped] = useState(true);
 
@@ -23,7 +23,7 @@ export default function Field({number, description, card}: field) {
                     top: `${event.clientY - rect.top}px`,
                     transform: event.clientY> window.innerHeight/2 ? "translate(0, -125%)" : "translate(0, -25%)"
                 }}
-            ><Preview {...{number, description, card, field_size}} />
+            ><Preview {...{number, description, card, field_size, name}} />
             </div>)
     }
 

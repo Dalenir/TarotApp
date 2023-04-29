@@ -3,7 +3,7 @@ import './Preview.css'
 import {field} from "../../interfacesa";
 
 
-export default function Preview({number, description, card}:field) {
+export default function Preview({number, description, card, name}:field) {
 
     return (
         <div className='prev-container'>
@@ -20,8 +20,13 @@ export default function Preview({number, description, card}:field) {
             </p>
             <div className='prev-text'>
                 <div className='text-pf'>
-                    <h3>Field {number}</h3>
-                    <p>{description}</p>
+                    <div className='shadow-number'>
+                        {number}
+                    </div>
+                    <div className='description-field'>
+                        <h4>{name}</h4>
+                        <p>{description}</p>
+                    </div>
                 </div>
                 <div className='text-pf'>
                     <h3>{card.name}</h3>

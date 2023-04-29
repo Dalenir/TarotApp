@@ -5,7 +5,6 @@ import './buttons.css'
 import type {board} from "../../interfacesa"
 import Field from "../card/Field";
 import {nanoid} from "nanoid";
-import User from "../../interfaces/User";
 
 interface mousePosInt {
     x: number
