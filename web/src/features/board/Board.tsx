@@ -35,7 +35,10 @@ export default function Board() {
         };
     }, []);
 
-    useEffect(() => { document.body.style.backgroundColor = '#05072c' }, [])
+    useEffect(() => {
+        document.body.style.backgroundColor = '#05072c'
+        return () => { document.body.style.backgroundColor = "#fffbf0"}
+    }, [])
 
     function allNewCards () {
         axios.get(`${import.meta.env.VITE_API_ROOT}/refresh_board`)

@@ -49,7 +49,7 @@ async def registration_first_step(email: Annotated[str, Form()]):
     msg = MIMEMultipart()
     msg['From'] = main_settings.EMAIL_LOGIN
     msg['To'] = email
-    msg['Subject'] = 'simple email in python'
+    msg['Subject'] = 'Your verification code for Tarot Nevercode'
     msg.attach(MIMEText('<h3>Your code is:</h3><br><h1>' + secret_code + '</b></h1>', 'html'))
     smtp_obj.sendmail(main_settings.EMAIL_LOGIN, email, msg.as_string())
     smtp_obj.quit()
