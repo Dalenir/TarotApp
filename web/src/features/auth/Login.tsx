@@ -31,9 +31,6 @@ export default function Login() {
 
     }
 
-    useEffect(() => { document.body.style.backgroundColor = '#fffbf0' }, [])
-
-
     return (
         <>
             {redirect}
