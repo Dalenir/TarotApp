@@ -22,21 +22,19 @@ enum Suit {
 
 export default function Card({ is_flipped, flip_handle, size, id, suit}:CardElementInteface) {
 
-
-    console.log(suit)
     let suit_style = () => {
 
         switch(suit.name.toLowerCase()) {
             case Suit.Swords:
-                return {outline: '5px inset crimson'}
+                return {boxShadow: '0 0 15px 7px #FF0000'}
             case Suit.Cups:
-                return {outline: '5px inset blue'}
+                return {boxShadow: '0 0 15px 7px #6495ED'}
             case Suit.Wands:
-                return {outline: '5px inset firebrick'}
+                return {boxShadow: '0 0 15px 7px #CD853F'}
             case Suit.Pentacles:
-                return {outline: '5px inset gold'}
+                return {boxShadow: '0 0 15px 7px #FFD700'}
             case Suit.Major:
-                return {outline: '8px inset silver'}
+                return {boxShadow: '0 0 20px 12px silver'}
         }
     }
 

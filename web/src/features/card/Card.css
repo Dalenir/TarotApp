@@ -1,6 +1,7 @@
 .card-img {
     height: 20vh;
     width: 13vh;
+    overflow: visible;
 }
 
 

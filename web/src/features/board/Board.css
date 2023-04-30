@@ -8,12 +8,12 @@
 /*}*/
 
 #board {
-    background-color: #143a46;
-    display: grid;
+    background: linear-gradient(173deg, rgba(8,0,101,1) 0%, rgba(15,15,70,1) 63%, rgba(28,26,97,1) 100%);
     width: 98%;
     height: 98%;
     position: relative;
     transform-style: preserve-3d;
+    border-radius: 10px;
 }
 
 .board-text { grid-area: board-text; }
@@ -86,12 +86,31 @@ body {
 
 #textarea {
     position: absolute;
-    background: slategray;
     width: 28%;
     height: 70%;
     top: 40%; left: 84%;
     transform: translate(-50%, -50%);
-    border-radius: 15px;
+    border-radius: 10px;
+    background: rgb(175,175,175);
+    background: radial-gradient(circle, rgba(175,175,175,0.9500175070028011) 0%, rgba(176,203,235,0.8715861344537815) 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.textarea-field {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    width: 98%;
+    height: 8%;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    line-height: normal;
+}
+
+.textarea-field > p {
+    margin-bottom: 0;
 }
 
 #field-0 {

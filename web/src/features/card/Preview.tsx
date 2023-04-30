@@ -29,8 +29,13 @@ export default function Preview({number, description, card, name}:field) {
                     </div>
                 </div>
                 <div className='text-pf'>
-                    <h3>{card.name}</h3>
-                    <p>{card.description}</p>
+                    <div className='shadow-number'>
+                        {card.value}
+                    </div>
+                    <div className='description-field'>
+                        <h3>{card.name}</h3>
+                        <p>{card.description}</p>
+                    </div>
                 </div>
             </div>
         </div>

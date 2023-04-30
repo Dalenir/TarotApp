@@ -13,7 +13,7 @@ export interface field {
     number: number,
     description: string,
     name: string,
-    card: card
+    card: card,
 }
 
 export interface board {

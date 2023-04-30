@@ -1,11 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Field.css'
 import Preview from "./Preview";
 import type {field} from "../../interfacesa";
 import Card from "./Card";
 
 
-export default function Field({number, description, card, name}: field) {
+interface FieldElementInterface extends field {
+    update_outer_texts: Function
+}
+
+
+
+export default function Field({number, description, card, name, update_outer_texts}: FieldElementInterface) {
     const [preview, setPreview] = useState<JSX.Element>();
     const [isFlipped, setIsFlipped] = useState(true);
 
@@ -43,6 +49,7 @@ export default function Field({number, description, card, name}: field) {
             killPreview()
         }
         setIsFlipped((old_flipped) => !old_flipped)
+        update_outer_texts({number, description, card, name})
     }
 
     return(
