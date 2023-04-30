@@ -93,7 +93,7 @@ export default function Board() {
             <div id='textarea'>
                 {resultTexts && resultTexts.map(field =>
                     <div className='textarea-field' key={field.number}>
-                        <p><b>{field.number}{field.name}: </b>{field.card.description}</p>
+                        <p><b>{field.number}. {field.name}: </b>{field.card.description}</p>
                     </div>
                 )}
             </div>
