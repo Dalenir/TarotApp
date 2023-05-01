@@ -21,7 +21,7 @@ let card: card = {
         order: 3,
         wild: true
     },
-    size: { width: "13vh", height: "20vh" }
+    size: { width: "13vh", height: "20vh" },
     visual_value: 'XVIII'
 }
 
