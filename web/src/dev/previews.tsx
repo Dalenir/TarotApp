@@ -22,6 +22,7 @@ let card: card = {
         wild: true
     },
     size: { width: "13vh", height: "20vh" }
+    visual_value: 'XVIII'
 }
 
 const ComponentPreviews = () => {
