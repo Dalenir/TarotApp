@@ -2,6 +2,7 @@ import {card} from "../../interfacesa";
 import React from "react";
 import ReactCardFlip from "react-card-flip";
 import './Card.css'
+import {SuitStyle} from "./suit_styles";
 
 
 interface CardElementInteface extends card {
@@ -11,32 +12,11 @@ interface CardElementInteface extends card {
 }
 
 
-enum Suit {
-    Swords = 'swords',
-    Wands = 'wands',
-    Cups = 'cups',
-    Pentacles = 'pentacles',
-    Major = 'major arcana'
-}
-
-
 export default function Card({ is_flipped, flip_handle, size, id, suit}:CardElementInteface) {
 
-    let suit_style = () => {
+    let suit_style = SuitStyle[suit.name.toLowerCase() as keyof typeof SuitStyle]
+    console.log(suit_style)
 
-        switch(suit.name.toLowerCase()) {
-            case Suit.Swords:
-                return {boxShadow: '0 0 15px 7px #FF0000'}
-            case Suit.Cups:
-                return {boxShadow: '0 0 15px 7px #6495ED'}
-            case Suit.Wands:
-                return {boxShadow: '0 0 15px 7px #CD853F'}
-            case Suit.Pentacles:
-                return {boxShadow: '0 0 15px 7px #FFD700'}
-            case Suit.Major:
-                return {boxShadow: '0 0 20px 12px silver'}
-        }
-    }
 
     return (
         <ReactCardFlip isFlipped={is_flipped} containerStyle={{...size}}>
@@ -46,7 +26,7 @@ export default function Card({ is_flipped, flip_handle, size, id, suit}:CardElem
                 alt='Bah no image'
                 key='front'
                 onClick={() => flip_handle()}
-                style={{...size, ...suit_style(), borderRadius: '10px'}}
+                style={{...size, boxShadow: `0 0 15px 7px ${suit_style.main_color}`, borderRadius: '10px'}}
             />
             <img src={`${import.meta.env.VITE_API_ROOT}/card/-1`} alt='bah no cover'
                  key='back'

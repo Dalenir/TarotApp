@@ -1,9 +1,13 @@
 import React from "react";
 import './Preview.css'
 import {field} from "../../interfacesa";
+import {Suit, SuitStyle} from "./suit_styles";
 
 
 export default function Preview({number, description, card, name}:field) {
+
+    let suit_style = SuitStyle[card.suit.name.toLowerCase() as keyof typeof SuitStyle]
+    console.log(suit_style)
 
     return (
         <div className='prev-container'>
@@ -29,8 +33,12 @@ export default function Preview({number, description, card, name}:field) {
                     </div>
                 </div>
                 <div className='text-pf'>
-                    <div className='shadow-number'>
-                        {card.value}
+                    <div className={`shadow-number`}
+                         style={{
+                             color: suit_style.secondary_color,
+                             fontSize: card.visual_value.length > 3 ? '110px' : '130px'
+                                }}>
+                        {card.visual_value}
                     </div>
                     <div className='description-field'>
                         <h3>{card.name}</h3>

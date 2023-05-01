@@ -1,6 +1,7 @@
 export interface card {
     id: number,
     value: number,
+    visual_value: string,
     name: string,
     suit: suit,
     state: boolean,

@@ -8,7 +8,7 @@
 .text-pf {
     width: 25vh;
     height: 18vh;
-    background-color: #bbb58a;
+    background-color:  #E6CD91;
     color: black;
     font-size: 17px;
     overflow: hidden;
@@ -32,9 +32,12 @@
     justify-content: center;
     font-size: 130px;
     z-index: 2;
-    color: #f9f9f9;
+    color: #f1ecec;
     opacity: 25%;
+    text-align: center;
+    font-family: 'Marcellus', serif;
 }
+
 
 .description-field {
     position: absolute;

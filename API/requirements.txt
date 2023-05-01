@@ -8,6 +8,7 @@ python-jose[cryptography]
 passlib
 redis
 pydantic[email]
+roman
 
 # pytest
 # httpx

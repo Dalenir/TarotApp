@@ -8,7 +8,7 @@
 /*}*/
 
 #board {
-    background: linear-gradient(173deg, rgba(8,0,101,1) 0%, rgba(15,15,70,1) 63%, rgba(28,26,97,1) 100%);
+    background: linear-gradient(173deg, rgb(12, 0, 147) 0%, rgb(29, 29, 105) 63%, rgb(41, 38, 121) 100%);
     width: 98%;
     height: 98%;
     position: relative;
