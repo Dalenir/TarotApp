@@ -20,7 +20,7 @@ async def card_test(card_number: int):
 
 @router.get("/refresh_board")
 async def refresh_board():
-    board = await BoardMaker.game_start()
+    board = await BoardMaker.game_start(reverse_card_chance=0.35)
     return board.json()
 
 

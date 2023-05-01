@@ -15,7 +15,7 @@ from game.models.field_model import FieldModel
 class BoardMaker:
 
     @staticmethod
-    async def game_start():
+    async def game_start(reverse_card_chance: float = 0.5):
 
         """
         Creating and filling up new board.
@@ -30,9 +30,9 @@ class BoardMaker:
             while x in card_numbers:
                 x = random.randint(0, 77)
             card_numbers.append(x)
+            state = CardState.up if secrets.randbelow(100) >= reverse_card_chance * 100 else CardState.reversed
             cards.append(CardMaker(card_collection).get_card(card_id=x,
-                                                             card_state=secrets.choice(
-                                                                 [CardState.up, CardState.reversed])))
+                                                             card_state=state))
         cards = await asyncio.gather(*cards)
 
         field_maker = FieldsMaker()
