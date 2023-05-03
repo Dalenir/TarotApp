@@ -1,4 +1,4 @@
-import User from "../../interfaces/User";
+import User_int from "../../interfaces/user_int";
 import {Button, Container} from "react-bootstrap";
 import './Profile.css';
 import Board from "../board/Board";
@@ -7,7 +7,7 @@ import Board from "../board/Board";
  // TODO: ONLY FOR DEMOSTRATION PURPOSES, REDO ALL
 
 interface ProfileProps {
-    user: User | undefined,
+    user: User_int | undefined,
     handle_logout: () => void
 }
 

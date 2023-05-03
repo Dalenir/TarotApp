@@ -13,19 +13,19 @@ export enum Suit {
 export const SuitStyle = {
     swords: {
         main_color: '#FF0000',
-        secondary_color: '#c02020'
+        secondary_color: 'rgba(255,0,0,0.47)'
     },
     cups: {
         main_color: '#6495ED',
-        secondary_color: '#8e8ed9'
+        secondary_color: 'rgba(0,0,255,0.37)'
     },
     wands: {
         main_color: '#CD853F',
-        secondary_color: '#88522f'
+        secondary_color: 'rgba(204,84,0,0.52)'
     },
     pentacles: {
         main_color: '#FFD700',
-        secondary_color: '#b0a202'
+        secondary_color: 'rgba(176,162,2,0.65)'
     },
     'major arcana': {
         main_color: '#C0C0C0',

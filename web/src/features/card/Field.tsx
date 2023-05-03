@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import './Field.css'
 import Preview from "./Preview";
-import type {field} from "../../interfacesa";
 import Card from "./Card";
+import {field} from "../../interfaces/field_int";
 
 
 interface FieldElementInterface extends field {

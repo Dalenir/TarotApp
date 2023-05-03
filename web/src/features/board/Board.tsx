@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './Board.css'
 import './buttons.css'
-import type {board, field} from "../../interfacesa"
+import type {board} from "../../interfaces/board_int"
 import Field from "../card/Field";
 import {nanoid} from "nanoid";
+import {field} from "../../interfaces/field_int";
 
 interface mousePosInt {
     x: number

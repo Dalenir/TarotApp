@@ -2,8 +2,8 @@ import React from "react";
 import {ComponentPreview, Previews} from "@react-buddy/ide-toolbox";
 import {PaletteTree} from "./palette";
 import Card from "../features/card/Card";
-import {card, suit} from "../interfacesa";
 import Board from "../features/board/Board";
+import {card, suit} from "../interfaces/card_int";
 
 
 let card: card = {

@@ -1,7 +1,7 @@
 import React from "react";
 import './Preview.css'
-import {field} from "../../interfacesa";
 import {Suit, SuitStyle} from "./suit_styles";
+import {field} from "../../interfaces/field_int";
 
 
 export default function Preview({number, description, card, name}:field) {

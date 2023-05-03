@@ -1,8 +1,8 @@
-import {card} from "../../interfacesa";
 import React from "react";
 import ReactCardFlip from "react-card-flip";
 import './Card.css'
 import {SuitStyle} from "./suit_styles";
+import {card} from "../../interfaces/card_int";
 
 
 interface CardElementInteface extends card {
