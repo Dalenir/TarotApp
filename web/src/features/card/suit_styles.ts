@@ -13,7 +13,7 @@ export enum Suit {
 export const SuitStyle = {
     swords: {
         main_color: '#FF0000',
-        secondary_color: 'rgba(255,0,0,0.47)'
+        secondary_color: 'rgba(255,0,0,0.65)'
     },
     cups: {
         main_color: '#6495ED',
