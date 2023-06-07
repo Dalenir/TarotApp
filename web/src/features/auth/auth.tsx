@@ -4,7 +4,7 @@ import React, {JSXElementConstructor, ReactElement, useEffect, useState} from "r
 import axios from "axios";
 
 export function RequireToken({ children, user_set } : {
-    children: ReactElement<any, string | JSXElementConstructor<any>>,
+    children: ReactElement,
     user_set: React.Dispatch<any>
 }) {
 
@@ -18,7 +18,7 @@ export function RequireToken({ children, user_set } : {
         axios.post(`${import.meta.env.VITE_API_ROOT}/user_profile`, bodyFormData , { withCredentials: true})
             .then(r => {
                 if (r.status === 200) {
-                    let enchantChild = React.cloneElement(children, {user:
+                    let enchantChild: ReactElement = React.cloneElement(children, {user:
                             {name: r.data.sub, payer: r.data.payer}
                     })
                     setRedirect(enchantChild)
