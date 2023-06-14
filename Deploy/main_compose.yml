@@ -6,6 +6,7 @@ services:
     build:
       context: ../API
       dockerfile: api.dockerfile
+      target: core
     container_name: ltl_api
     env_file:
       - .env

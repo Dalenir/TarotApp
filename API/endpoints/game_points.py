@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get("/")
 async def root():
-    return {"message": "FastAPI is running"}
+    return {"message": "FastAPI is running. Please check docs for more information about endpoints."}
 
 
 @router.get("/card/{card_number}")

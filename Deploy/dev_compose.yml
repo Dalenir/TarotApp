@@ -6,6 +6,7 @@ services:
     build:
       context: ../API
       dockerfile: api.dockerfile
+      target: test_extended
     depends_on:
       - mongo
     container_name: ltl_api

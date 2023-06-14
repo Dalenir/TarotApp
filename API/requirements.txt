@@ -9,16 +9,3 @@ passlib
 redis
 pydantic[email]
 roman
-
-# pytest
-# httpx
-# allure-pytest
-# allure-combine
-# pytest-cov==4.0.0
-# pytest-metadata==2.0.2
-# pytest-html==3.1.1
-# pytest-clarity==1.0.1
-# pytest-xdist==2.5.0
-#
-# flake8
-# flake8-html
