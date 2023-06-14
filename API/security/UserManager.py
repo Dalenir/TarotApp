@@ -43,5 +43,5 @@ async def register_user(username: str, password: str, email: str, database: User
     return True
 
 
-async def get_current_user_websocket(websocket: WebSocket, token=Depends(websocket_auth_test)):
-    return 'bah'
+# async def get_current_user_websocket(websocket: WebSocket, token=Depends(websocket_auth_test)):
+#     return 'bah'

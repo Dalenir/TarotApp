@@ -24,9 +24,9 @@ async def refresh_board():
     return board.json()
 
 
-@router.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket, bah=Depends(get_current_user_websocket)):
-    await websocket.accept()
-    while True:
-        data = await websocket.receive_text()
-        await websocket.send_text(f"bah")
+# @router.websocket("/ws")
+# async def websocket_endpoint(websocket: WebSocket, bah=Depends(get_current_user_websocket)):
+#     await websocket.accept()
+#     while True:
+#         data = await websocket.receive_text()
+#         await websocket.send_text(f"bah")
